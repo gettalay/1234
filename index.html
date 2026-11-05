@@ -48,11 +48,10 @@
     
     <center><a href="page2.html">Начать приключение</a></center>
 
-    <!-- Скрипты для отправки формы через EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        // 1. ВСТАВЬ СЮДА СВОЙ PUBLIC KEY (из раздела Account -> General)
-        emailjs.init({ publicKey: "ТВОЙ_PUBLIC_KEY" });
+        
+        emailjs.init({ publicKey: "2GSTw9lDFPD-UMzei" });
 
         document.getElementById("myform").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -60,8 +59,7 @@
             const status = document.getElementById("form-status");
             status.textContent = "Отправка...";
 
-            // 2. ВСТАВЬ СЮДА СВОЙ TEMPLATE ID (вместо ТВОЙ_TEMPLATE_ID)
-            emailjs.sendForm("service_gupro4l", "ТВОЙ_TEMPLATE_ID", this)
+            emailjs.sendForm("service_gupro4l", "template_3zgs4s8", this)
                 .then(() => {
                     status.textContent = "Отправлено!";
                     this.reset();
