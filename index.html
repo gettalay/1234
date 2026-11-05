@@ -35,6 +35,7 @@
         <img src="igra-v-rising-2024-obzor-otzyv_17155951451522171058.jpg" alt="V Rising">
         <p></p>
 
+        <!-- Блок с формой обратной связи -->
         <h2>Обратная связь</h2>
         <form id="myform">
             <input type="text"  id="name"    name="name"    placeholder="Имя" required><br><br>
@@ -44,10 +45,13 @@
             <p id="form-status"></p>
         </form>
     </main>
+    
     <center><a href="page2.html">Начать приключение</a></center>
 
+    <!-- Скрипты для отправки формы через EmailJS -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
+        // 1. ВСТАВЬ СЮДА СВОЙ PUBLIC KEY (из раздела Account -> General)
         emailjs.init({ publicKey: "ТВОЙ_PUBLIC_KEY" });
 
         document.getElementById("myform").addEventListener("submit", function (e) {
@@ -56,14 +60,15 @@
             const status = document.getElementById("form-status");
             status.textContent = "Отправка...";
 
-            emailjs.sendForm("ТВОЙ_SERVICE_ID", "ТВОЙ_TEMPLATE_ID", this)
+            // 2. ВСТАВЬ СЮДА СВОЙ TEMPLATE ID (вместо ТВОЙ_TEMPLATE_ID)
+            emailjs.sendForm("service_gupro4l", "ТВОЙ_TEMPLATE_ID", this)
                 .then(() => {
                     status.textContent = "Отправлено!";
                     this.reset();
                 })
                 .catch((err) => {
                     status.textContent = "Ошибка отправки";
-                    console.error(err);
+                    console.error("Ошибка EmailJS:", err);
                 });
         });
     </script>
