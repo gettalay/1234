@@ -34,7 +34,38 @@
         <img src="ab9ba32809.png" alt="V Rising">
         <img src="igra-v-rising-2024-obzor-otzyv_17155951451522171058.jpg" alt="V Rising">
         <p></p>
+
+        <h2>Обратная связь</h2>
+        <form id="myform">
+            <input type="text"  id="name"    name="name"    placeholder="Имя" required><br><br>
+            <input type="email" id="email"   name="email"   placeholder="Email" required><br><br>
+            <textarea           id="message" name="message" placeholder="Сообщение" required></textarea><br><br>
+            <button type="submit">Отправить</button>
+            <p id="form-status"></p>
+        </form>
     </main>
     <center><a href="page2.html">Начать приключение</a></center>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init({ publicKey: "ТВОЙ_PUBLIC_KEY" });
+
+        document.getElementById("myform").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const status = document.getElementById("form-status");
+            status.textContent = "Отправка...";
+
+            emailjs.sendForm("ТВОЙ_SERVICE_ID", "ТВОЙ_TEMPLATE_ID", this)
+                .then(() => {
+                    status.textContent = "Отправлено!";
+                    this.reset();
+                })
+                .catch((err) => {
+                    status.textContent = "Ошибка отправки";
+                    console.error(err);
+                });
+        });
+    </script>
 </body>
 </html>
